@@ -9,7 +9,7 @@ module.exports = ( env, argv ) => {
     // entry:'./src/app.js',
     entry:'./src/app.js',
     output: {
-      path: path.join(__dirname,'public'),
+      path: path.join(__dirname,'public','dist'),
       filename: 'bundle.js'
     },
     module: {
@@ -43,7 +43,8 @@ module.exports = ( env, argv ) => {
     devServer: {
       port:3000,
       contentBase: path.join(__dirname, 'public'),
-      historyApiFallback: true
+      historyApiFallback: true,
+      publicPath: '/dist/'
     }, 
   };
 };
