@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 
 import { startAddExpense
         , editExpense
+        , startEditExpense
         , removeExpense
         , startRemoveExpense
         , setExpenses
@@ -38,28 +39,25 @@ test( 'should setup remove expense action object.', () => {
 
 test( 'should setup remove expense from firebase.', (done) => {
   
-    const store = createMockStore({});
-    const id = expenses[2].id;
-    store.dispatch( startRemoveExpense( { id } ) ).then( () => {
+  const store = createMockStore({});
+  const id = expenses[2].id;
+  store.dispatch( startRemoveExpense( { id } ) ).then( () => {
 
-      const actions = store.getActions();
-      expect( actions[0] ).toEqual( {
-        type:'REMOVE_EXPENSE',
-        id
-      } );
-
-      return database.ref( `expenses/${id}` ).once( 'value' );
-
-    } ).then( (snapshot) => {
-
-      expect( snapshot.val() ).toBeFalsy();
-      done();
-
+    const actions = store.getActions();
+    expect( actions[0] ).toEqual( {
+      type:'REMOVE_EXPENSE',
+      id
     } );
+    return database.ref( `expenses/${id}` ).once( 'value' );
 
+  } ).then( (snapshot) => {
+
+    expect( snapshot.val() ).toBeFalsy();
+    done();
     
-  
   } );
+
+} );
 
 test( 'should setup edit expense action object.', () => {
   
@@ -68,6 +66,30 @@ test( 'should setup edit expense action object.', () => {
     type: 'EDIT_EXPENSE',
     id: '123abc',
     updates: { note: 'New note value' }
+  } );
+
+} );
+
+test( 'should edit expense from firebase.', ( done ) => {
+
+  const store = createMockStore( {} );
+  const id = expenses[ 0 ].id;
+  const updates = { amount: 12081991 };
+  store.dispatch( startEditExpense( id, updates ) ).then( () => {
+
+    const actions = store.getActions();
+    expect( actions[ 0 ] ).toEqual({
+      type: 'EDIT_EXPENSE',
+      id,
+      updates
+    } );
+    return database.ref( `expenses/${id}` ).once( 'value' );
+
+  } ).then( ( snapshot ) => {
+
+    expect( snapshot.val().amount ).toBe( updates.amount );
+    done();
+
   } );
 
 } );
