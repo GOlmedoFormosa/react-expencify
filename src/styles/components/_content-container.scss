@@ -1,0 +1,10 @@
+.content-container {
+  
+  // if the width of the browser is 100 rems we want to make sure we have 10 rems distributed on each side.
+  // auto makes sure to evenly distribute the rest of the space on the left and the right for content-container.
+  margin: 0 auto; // if the width of the browser is 100 rems we want to make sure we have 10 rems distributed on each side.
+
+  //button 0 and left and right $m-size
+  padding: 0 $m-size; //this is going to make sure that none of our content ever pushes up right against the edge of the browser
+  max-width: 80rem;
+}

@@ -1,0 +1,19 @@
+.page-header {
+  background: $off-white;
+  // space with the things down bellow
+  margin-bottom: $l-size;
+  // space on the top and on the bottom
+  padding: $l-size 0;
+}
+
+.page-header__actions {
+  margin-top: $m-size;
+}
+
+.page-header__title {
+  font-weight: 300;
+  margin: 0;
+  span {
+    font-weight: 700;
+  }
+}

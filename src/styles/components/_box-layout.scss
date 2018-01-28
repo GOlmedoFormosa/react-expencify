@@ -1,0 +1,22 @@
+.box-layout {
+  align-items: center;
+  background: url('/images/bg.jpg'); //this will show the height of the elements so I need to add height and with
+  background-size: cover; // this is to the image cover the entire box layout.
+  display: flex;
+  height: 100vh; //100% of the viewport height
+  justify-content: center;
+  width: 100vw;//100% of the viewport width
+}
+
+.box-layout__box {
+  background: fade-out( white, .15 ); // this is to create a slightly transparent background for that box.
+  border-radius: 3px;
+  padding: $l-size $m-size;
+  text-align: center;
+  width: 25rem;
+}
+
+.box-layout__title {
+  margin: 0 0 $m-size 0;
+  line-height: 1;
+}

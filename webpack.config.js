@@ -21,7 +21,7 @@ module.exports = ( env, argv ) => {
 
   return {
     // entry:'./src/app.js',
-    entry:'./src/app.js',
+    entry: ['babel-polyfill','./src/app.js'],
     output: {
       path: path.join(__dirname,'public','dist'),
       filename: 'bundle.js'
